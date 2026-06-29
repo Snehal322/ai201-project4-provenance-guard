@@ -22,10 +22,11 @@ limiter = Limiter(
     storage_uri="memory://"
 )
 
-@limiter.limit("10 per minute;100 per day")
-
-
 @app.route("/submit",methods=["POST"])
+
+@limiter.limit("10 per minute;100 per day")
+# @limiter.limit("2 per minute")
+
 def submit():
 
     data=request.get_json()
